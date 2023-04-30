@@ -9,12 +9,12 @@ services:
       - "8080:80"
     volumes:
       - ./laravel:/var/www/html
+      - ./entrypoint.sh:/entrypoint.sh
     environment:
       - APP_ENV=production
       - APP_DEBUG=true
     restart: always
-    depends_on:
-      - db
+    command: bash /entrypoint.sh
     networks:
       - laravel-app
 

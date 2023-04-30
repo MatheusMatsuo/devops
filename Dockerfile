@@ -21,14 +21,6 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql exif
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
-COPY ./laravel /var/www/html/
-
-RUN composer install
-
-RUN npm install && npm run dev
-
-RUN chmod -R 777 /var/www/html/storage/
-
 COPY ./laravel-default.conf /etc/apache2/sites-available/
 
 RUN a2dissite 000-default.conf && a2ensite laravel-default.conf
