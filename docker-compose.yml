@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./laravel:/var/www/html
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=true
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - laravel-app
+
+networks:
+  laravel-app:
